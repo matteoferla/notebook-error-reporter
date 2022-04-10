@@ -2,7 +2,7 @@
 from typing import Optional, List, Dict, Union
 from ._traceback import ErrorTraceback, TracebackDetailsType, EventDetailsType
 # key method of `ErrorTraceback` is `get_details(self, error:Exception)  -> EventDetailsType`
-from ._event import ErrorEvent
+from .error_event import ErrorEvent
 from datetime import datetime
 
 

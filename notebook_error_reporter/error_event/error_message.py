@@ -11,7 +11,7 @@ class EventMessageType(EventDetailsType):
     first_line: str
 
 # key method of `ErrorTraceback` is `get_details(self, error:Exception)  -> EventDetailsType`
-from ._event import ErrorEvent
+from .error_event import ErrorEvent
 
 
 class ErrorSlack(ErrorTraceback, ErrorEvent):
