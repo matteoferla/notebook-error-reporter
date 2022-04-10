@@ -1,12 +1,28 @@
 from typing import List, Optional
 from datetime import datetime
 
+# from .error_event import EventMessageType
+# ref for eventMessageType
+# class TracebackDetailsType(TypedDict):
+#     filename: str
+#     fun_name: str
+#     lineno: int
+#
+# class EventMessageType:
+#     error_name: str
+#     error_message: str
+#     traceback: List[TracebackDetailsType]
+#     execution_count: int
+#     first_line: str
+
 from pydantic import BaseModel
 
 class ErrorBase(BaseModel):
     name: str
     message: Optional[str] = None
     traceback: List[dict] = []
+    execution_count: int
+    first_line: str
 
 
 class ErrorCreate(ErrorBase):

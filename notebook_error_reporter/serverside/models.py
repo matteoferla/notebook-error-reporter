@@ -13,15 +13,10 @@ class Error(Base):
     name = Column(String)  # type is a builtin
     message = Column(String)
     traceback = Column(JSON)
+    execution_count = Column(Integer)
+    first_line = Column(String)
     time = Column(DateTime(timezone=True), server_default=func.now())
     usage = relationship("Usage", back_populates="errors")
-
-    @validates('traceback')
-    def validate_traceback(self, key, traceback):
-        if '@' not in traceback:
-            raise ValueError("failed simple email validation")
-        return address
-
 
 class Usage(Base):
     """
