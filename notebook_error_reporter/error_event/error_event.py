@@ -25,5 +25,3 @@ class ErrorEvent:
     def on_error(self, *args, **kwargs):
         pass # virtual method to be overridden.
 
-
-ErrorEvent().load_ipython_extension()

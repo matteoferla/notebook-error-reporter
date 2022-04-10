@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, JSON
 from sqlalchemy.orm import relationship, validates
 from sqlalchemy.sql import func
 
-from error_reporting_backend.database import Base
+from .database import Base
 
 
 class Error(Base):
@@ -10,8 +10,8 @@ class Error(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     usage_uuid = Column(String, ForeignKey("usages.uuid"))
-    name = Column(String)  # type is a builtin
-    message = Column(String)
+    error_name = Column(String)  # type is a builtin
+    error_message = Column(String)
     traceback = Column(JSON)
     execution_count = Column(Integer)
     first_line = Column(String)

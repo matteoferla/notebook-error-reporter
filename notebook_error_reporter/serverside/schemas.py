@@ -18,8 +18,8 @@ from datetime import datetime
 from pydantic import BaseModel
 
 class ErrorBase(BaseModel):
-    name: str
-    message: Optional[str] = None
+    error_name: str
+    error_message: Optional[str] = None
     traceback: List[dict] = []
     execution_count: int
     first_line: str
