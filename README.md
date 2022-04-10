@@ -49,6 +49,61 @@ es.load_ipython_extension()
 es.error_details
 ```
 
+## Server
+
+A FastAPI server to get the errors is also present.
+
+Running `run_app.py`, which contains this code:
+```python
+import uvicorn
+from fastapi import FastAPI
+from notebook_error_reporter.serverside import create_db, create_app
+
+create_db()
+app:FastAPI = create_app(debug=False, max_transparency=True, colab_only=False)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+```
+and activating on the notebook thusly:
+```python
+from notebook_error_reporter import ErrorServer
+
+es = ErrorServer(url='http://127.0.0.1:8000', notebook='mine')
+es.load_ipython_extension()
+```
+
+On error a dictionary typehintinted as `EventMessageType` is sent:
+
+```python
+from notebook_error_reporter import EventMessageType
+
+EventMessageType.__annotations__
+```
+
+    {'execution_count': int,
+     'first_line': str,
+     'error_name': str,
+     'error_message': str,
+     'traceback': typing.List[notebook_error_reporter.error_event._traceback.TracebackDetailsType]}
+
+and `TracebackDetailsType.__annotations__` is:
+
+    {'filename': str, 'fun_name': str, 'lineno': int}
+
+The server does keep track of IP addresses to prevent vandalism,
+but it's the IP address of the colab notebook. No JavaScript call is present to get the browser IP.
+Therefore the IP will be in the range: 142.250.0.0 - 142.251.255.255.
+
+To see the errors sent:
+
+```python
+es.retrieve_errors()
+```
+
+I am unsure if to allow everyone to see the sessions and errors, hence the `max_transparency` argument.
+For an internal server, this makes sense, but for a public one, revealing the session ids may 
+result in vandals adding errors to sessions randomly.
 
 ## Issues
 Two issues are a problem:

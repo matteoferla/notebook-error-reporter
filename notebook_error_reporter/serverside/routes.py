@@ -9,10 +9,12 @@ from .database import SessionLocal, engine, get_db
 from fastapi import FastAPI, Request
 
 
-def add_create_routes(app: FastAPI):
+def add_create_routes(app: FastAPI, colab_only:bool=True):
     @app.post("/usages/", response_model=schemas.Usage)
     def create_usage(usage: schemas.UsageCreate, request: Request, db: Session = Depends(get_db)):
         # ip is not expected to be unique while uuid collisions are a quadrillion to one.
+        if colab_only and '142.250.' not in request.client.host and '142.250.' not in request.client.host:
+            raise HTTPException(403, 'Colab error reporting only.')
         return crud.create_usage(db=db, usage=usage, ip=request.client.host)
 
     @app.post("/errors/{uuid}/", response_model=schemas.Error)
@@ -20,6 +22,8 @@ def add_create_routes(app: FastAPI):
                      error: schemas.ErrorCreate,
                      request: Request,
                      db: Session = Depends(get_db)):
+        if colab_only and '142.250.' not in request.client.host and '142.250.' not in request.client.host:
+            raise HTTPException(403, 'Colab error reporting only.')
         return crud.create_error(db=db, error=error, usage_uuid=uuid, ip=request.client.host)
 
 def add_read_one_routes(app: FastAPI):

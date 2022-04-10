@@ -32,7 +32,7 @@ class ErrorCreate(ErrorBase):
 class Error(ErrorBase):
     id: int
     usage_uuid: str
-    time: datetime
+    timestamp: datetime
 
     class Config:
         orm_mode = True
@@ -51,7 +51,7 @@ class Usage(UsageBase):
     id: int
     ip: str
     uuid: str
-    time: datetime
+    timestamp: datetime
     errors: List[Error] = []
 
     class Config:

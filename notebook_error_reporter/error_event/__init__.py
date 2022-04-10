@@ -1,3 +1,3 @@
-from .error_message import ErrorSlack, EventMessageType
+from .error_message import ErrorSlack, ErrorServer, EventMessageType
 from .error_store import ErrorStore, EventStoreType
-from ._traceback import TracebackType
+from ._traceback import TracebackDetailsType

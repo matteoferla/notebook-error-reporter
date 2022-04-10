@@ -15,7 +15,7 @@ class Error(Base):
     traceback = Column(JSON)
     execution_count = Column(Integer)
     first_line = Column(String)
-    time = Column(DateTime(timezone=True), server_default=func.now())
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
     usage = relationship("Usage", back_populates="errors")
 
 class Usage(Base):
@@ -28,5 +28,5 @@ class Usage(Base):
     uuid = Column(String, unique=True)
     ip = Column(String)  # not unique, maybe.
     notebook = Column(String)
-    time = Column(DateTime(timezone=True), server_default=func.now())
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
     errors = relationship("Error", back_populates="usage")
