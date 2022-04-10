@@ -1,8 +1,6 @@
 __version__ = '0.1'
 
-
 from setuptools import setup, find_packages
-
 
 from warnings import warn
 from importlib import util
@@ -12,9 +10,10 @@ from setuptools import setup, find_packages
 # ---------- Setup  ------------------------------------------------------------------------------------------
 
 import os
+
 this_directory = os.path.abspath(os.path.dirname(__file__))
 try:
-    with open(os.path.join(this_directory,'requirements.txt'), 'r') as fh:
+    with open(os.path.join(this_directory, 'requirements.txt'), 'r') as fh:
         requirements = [line.strip() for line in fh.read().split() if line and '#' not in line]
     with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
         __doc__ = f.read()
@@ -22,7 +21,7 @@ except Exception:  # weird file
     requirements = []
     __doc__ = ''
 
-description = 'A variety of functions to make working with Pyrosetta easier.'
+description = 'A error notification system for remote Jupyter notebooks'
 
 setup(
     name='pyrosetta_help',
@@ -30,11 +29,12 @@ setup(
     python_requires='>=3.7',
     packages=find_packages(),
     install_requires=requirements,
+    extras_require={'server': ['uvicorn', 'fastapi', 'databases', 'pydantic', 'sqlalchemy']},
     url='https://github.com/matteoferla/remote-notebook-error-collection',
     license='MIT',
     author='Matteo Ferla',
     author_email='matteo.ferla@gmail.com',
-    classifiers=[ # https://pypi.org/classifiers/
+    classifiers=[  # https://pypi.org/classifiers/
         'Development Status :: 3 - Alpha',  # Development Status :: 5 - Production/Stable
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
