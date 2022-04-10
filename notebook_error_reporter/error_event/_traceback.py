@@ -15,8 +15,14 @@ class TracebackDetailsType(TypedDict):
     lineno: int
 
 
+class EventDetailsType(TypedDict):
+    error_name: str
+    error_message: str
+    traceback: List[TracebackDetailsType]
+
+
 class ErrorTraceback:
-    def get_details(self, error: Exception) -> Dict[str, Union[str, List[TracebackDetailsType]]]:
+    def get_details(self, error: Exception) -> EventDetailsType:
         """
         Given an error return a dictionary of keys 'error_name' (str), 'error_message' (str)
         and traceback, which is a partial misnomer as its value is not a `TracebackType`,

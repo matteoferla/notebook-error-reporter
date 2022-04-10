@@ -1,3 +1,6 @@
+__version__ = '0.1'
+
+
 from setuptools import setup, find_packages
 
 
@@ -23,7 +26,7 @@ description = 'A variety of functions to make working with Pyrosetta easier.'
 
 setup(
     name='pyrosetta_help',
-    version='0.1',
+    version=__version__,
     python_requires='>=3.7',
     packages=find_packages(),
     install_requires=requirements,
@@ -32,7 +35,7 @@ setup(
     author='Matteo Ferla',
     author_email='matteo.ferla@gmail.com',
     classifiers=[ # https://pypi.org/classifiers/
-        'Development Status :: 3 - Alpha', # Development Status :: 5 - Production/Stable
+        'Development Status :: 3 - Alpha',  # Development Status :: 5 - Production/Stable
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
         'Topic :: Scientific/Engineering :: Chemistry',
