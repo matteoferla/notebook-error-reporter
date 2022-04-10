@@ -11,6 +11,45 @@ Similar in concept to Sentry.io, I would like to know when error happen.
 
 Hence a cell magic that captures and error sends the most anonymous data to an address.
 
+## Slack
+The easiest way is getting slacked on error to a channel.
+A Slack webhook is easy to set up (just remember the subdomain to do so is api not app).
+
+```python
+import os
+os.environ['SLACK_WEBHOOK'] = "https://hooks.slack.com/services/XXXXXXXX"
+
+from notebook_error_reporter import ErrorSlack
+es = ErrorSlack(os.environ['SLACK_WEBHOOK'])
+es.load_ipython_extension()
+```
+
+A regular cell does nothing. But one that is not successful will send a Slack message.
+
+    {"error_name": "ValueError", 
+     "error_message": "foo", 
+     "traceback": [{"filename": "foo.py",
+                    "fun_name": "run_code", 
+                    "lineno": 666}, 
+                    ...
+                   ], 
+     "first_line": "# cell that does foo",
+     "execution_count": 111}
+
+The 'filename' is stripped of the dist-packages path, 
+because the `dist-packages` path in colab may have a username that _could_ have personal identifiable data.
+
+## Store
+
+An alternative option is storing the error details `error_details`.
+```
+from notebook_error_reporter import ErrorStore
+es = ErrorStore()
+es.load_ipython_extension()
+es.error_details
+```
+
+
 ## Issues
 Two issues are a problem:
 
