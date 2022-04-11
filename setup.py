@@ -18,13 +18,13 @@ try:
     with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
         __doc__ = f.read()
 except Exception:  # weird file
-    requirements = []
+    requirements = ['requests']
     __doc__ = ''
 
 description = 'A error notification system for remote Jupyter notebooks'
 
 setup(
-    name='pyrosetta_help',
+    name='remote-notebook-error-collection',
     version=__version__,
     python_requires='>=3.7',
     packages=find_packages(),
