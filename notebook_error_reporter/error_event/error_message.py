@@ -87,10 +87,16 @@ class ErrorServer(ErrorTraceback, ErrorEvent):
                                      'execution_count': int(execution_count),
                                      'notebook': self.notebook
                                      }
-        response = requests.post(f'{self.url}/errors/{self.uuid}',
+        response = requests.post(f'{self.url}/errors/{self.uuid}/',
                                  json=details)
-        if response.status_code != 200:
-            warnings.warn(f'Additionally there was an error reporting failure: {response.json()}')
+        if response.status_code == 200:
+            return
+        elif response.headers['content-type'] == 'application/json':
+            warnings.warn(f'Additionally there was an error ({response.status_code}) '
+                          f'reporting failure: {response.json()}')
+        else:
+            warnings.warn(f'Additionally there was an error ({response.status_code}) '
+                          f'reporting failure (html response): {response.text}')
 
     def retrieve_errors(self) -> List[EventMessageType]:
         response = requests.get(f'{self.url}/usages/{self.uuid}')
