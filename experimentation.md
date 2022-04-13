@@ -102,3 +102,17 @@ def load_ipython_extension(shell: InteractiveShell):
 load_ipython_extension(get_ipython())  # noqa
 ```
 Perfetto!
+
+## Oh Wait
+Colab unfortunately is using an older ipython and its `post_run_cell` does not return a results object.
+One solution that works is to update ipython and force it to reset —the session is maintained:
+
+```python
+!pip install -q --upgrade ipython
+!pip install -q --upgrade ipykernel
+
+# Restart with new IPython.
+import os
+import signal
+os.kill(os.getpid(), signal.SIGTERM)
+```
