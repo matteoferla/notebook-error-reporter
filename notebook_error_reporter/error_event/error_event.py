@@ -2,6 +2,7 @@ from IPython.core.interactiveshell import InteractiveShell, ExecutionResult
 import IPython
 import warnings
 from types import TracebackType, MethodType
+from typing import Callable
 
 
 
@@ -46,7 +47,16 @@ class ErrorEvent:
         if IPython.version_info[0] > 5:
             warnings.warn(f'Your IPython is modern {IPython.version_info}: `load_ipython_extension` is better.')
         warnings.warn(f'Monkey patching approach used due to ancient IPython {IPython.version_info}')
+        shell: InteractiveShell = get_ipython()  # noqa
+        monkeypatch:Callable = self.monkeypatch_factory()
+        shell.showtraceback = MethodType(monkeypatch, shell)
 
+    def monkeypatch_factory(self) -> Callable:
+        """
+        Generate a monkeypatching function that knows self:ErrorEvent
+
+        :return: Callable
+        """
         def monkeypatch(shell_self, exc_tuple=None, *args, **kwargs):
             try:
                 etype: type  # i.e. Exception class
@@ -62,8 +72,8 @@ class ErrorEvent:
             # the class still has a vanilla method.
             return shell_self.__class__.showtraceback(shell_self, exc_tuple, *args, **kwargs)
 
-        shell: InteractiveShell = get_ipython()  # noqa
-        shell.showtraceback = MethodType(monkeypatch, shell)
+        return monkeypatch
+
 
 
     def on_error(self, *args, **kwargs):
