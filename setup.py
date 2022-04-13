@@ -24,7 +24,7 @@ except Exception:  # weird file
 description = 'A error notification system for remote Jupyter notebooks'
 
 setup(
-    name='remote-notebook-error-collection',
+    name='notebook-error-reporter',
     version=__version__,
     python_requires='>=3.7',
     packages=find_packages(),
