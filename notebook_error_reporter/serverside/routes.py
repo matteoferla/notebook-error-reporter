@@ -8,6 +8,13 @@ from .database import SessionLocal, engine, get_db
 
 from fastapi import FastAPI, Request
 
+def add_root(app: FastAPI):
+    @app.get("/")
+    def root():
+        return {"message": "Remote notebook error reporter",
+                "GitHub": "https://github.com/matteoferla/remote-notebook-error-collection",
+                "ReadTheDocs": "https://remote-notebook-error-collection.readthedocs.io/en/latest/ "}
+
 
 def add_create_routes(app: FastAPI, colab_only:bool=True):
     @app.post("/usages/", response_model=schemas.Usage)
