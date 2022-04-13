@@ -50,14 +50,11 @@ es.retrieve_errors()
 
 ## Examples in action
 
-[![Fragmenstein](https://img.shields.io/badge/Run--demo--in--colab-fragmenstein.ipynb-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/Fragmenstein/blob/master/colab_fragmenstein.ipynb)
-
-* [Run PyRosetta in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta.ipynb)
-* [Analysis of dimer output from ColabFold in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-dimer.ipynb)
-* [Migrate a ligand in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-migrate_ligands.ipynb)
-* [Add missing loops by cannibilising AlphaFold2](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-thread_by_AF2_cannibalism.ipynb)
-
-
+[![Fragmenstein](https://img.shields.io/badge/Run--demo--in--colab-fragmenstein-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/Fragmenstein/blob/master/colab_fragmenstein.ipynb)
+[![boilerplate PyRosetta](https://img.shields.io/badge/Run--demo--in--colab-boilerplate--pyrosetta-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta.ipynb)
+[![colabfold dimer PyRosetta](https://img.shields.io/badge/Run--demo--in--colab-analysis--colabfold--dimer-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-dimer.ipynb)
+[![ligand migration  PyRosetta](https://img.shields.io/badge/Run--demo--in--colab-ligand--migration-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-migrate_ligands.ipynb)
+[![Add missing loops by cannibilising AlphaFold2](https://img.shields.io/badge/Run--demo--in--colab-cannibalise--AF2--for--missing--loops-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-thread_by_AF2_cannibalism.ipynb)
 
 ## Aims
 I have a few notebooks that I have shared on Twitter and 
