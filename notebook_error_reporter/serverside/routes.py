@@ -12,6 +12,7 @@ def add_root(app: FastAPI):
     @app.get("/")
     def root():
         return {"message": "Remote notebook error reporter",
+                "Swagger API": "/docs",
                 "GitHub": "https://github.com/matteoferla/remote-notebook-error-collection",
                 "ReadTheDocs": "https://remote-notebook-error-collection.readthedocs.io/en/latest/ "}
 
