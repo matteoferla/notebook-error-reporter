@@ -53,11 +53,12 @@ class ErrorEvent:
                 value: Exception
                 tb: TracebackType
                 etype, value, tb = shell_self._get_exc_info(exc_tuple)
-                self.on_error(error=etype,
+                # value.__traceback__ is tb.
+                self.on_error(error=value,
                               execution_count=-1,
                               first_line='Unknown')
-            except Exception:
-                pass
+            except Exception as error:
+                warnings.warn(f'An error occurred in monkeypatched `showtraceback` {error.__class__.__name__}: {error}')
             # the class still has a vanilla method.
             return shell_self.__class__.showtraceback(shell_self, exc_tuple, *args, **kwargs)
 
