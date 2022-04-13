@@ -9,7 +9,7 @@ Three classes presented here are successive steps in its construction.
 
 In a Jupyter notebook, this is what is run:
 ```python
-!python -m pip install git+https://github.com/matteoferla/remote-notebook-error-collection.git
+!pip install notebook-error-reporter
 from notebook_error_reporter import ErrorServer
 
 es = ErrorServer(url='https://errors.matteoferla.com', notebook='test')
@@ -21,6 +21,43 @@ and can be inspected:
 ```python
 es.retrieve_errors()
 ```
+
+[![https img shields io pypi v notebook error reporter logo python](https://img.shields.io/pypi/v/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+[![https img shields io pypi pyversions notebook error reporter logo python](https://img.shields.io/pypi/pyversions/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+[![https img shields io pypi wheel notebook error reporter logo python](https://img.shields.io/pypi/wheel/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+[![https img shields io pypi format notebook error reporter logo python](https://img.shields.io/pypi/format/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+[![https img shields io pypi status notebook error reporter logo python](https://img.shields.io/pypi/status/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+
+[![https img shields io codeclimate maintainability matteoferla notebook error reporter logo codeclimate](https://img.shields.io/codeclimate/maintainability/matteoferla/notebook-error-reporter?logo=codeclimate)](https://codeclimate.com/github/matteoferla/notebook-error-reporter)
+[![https img shields io codeclimate issues matteoferla notebook error reporter logo codeclimate](https://img.shields.io/codeclimate/issues/matteoferla/notebook-error-reporter?logo=codeclimate)](https://codeclimate.com/github/matteoferla/notebook-error-reporter)
+[![https img shields io codeclimate tech debt matteoferla notebook error reporter logo codeclimate](https://img.shields.io/codeclimate/tech-debt/matteoferla/notebook-error-reporter?logo=codeclimate)](https://codeclimate.com/github/matteoferla/notebook-error-reporter)
+
+[![https img shields io github forks matteoferla notebook error reporter label Fork style social logo github](https://img.shields.io/github/forks/matteoferla/notebook-error-reporter?label=Fork&style=social&logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github stars matteoferla notebook error reporter style social logo github](https://img.shields.io/github/stars/matteoferla/notebook-error-reporter?style=social&logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github watchers matteoferla notebook error reporter label Watch style social logo github](https://img.shields.io/github/watchers/matteoferla/notebook-error-reporter?label=Watch&style=social&logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github last commit matteoferla notebook error reporter logo github](https://img.shields.io/github/last-commit/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github license matteoferla notebook error reporter logo github](https://img.shields.io/github/license/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter/raw/main/LICENCE)
+[![https img shields io github commit activity m matteoferla notebook error reporter logo github](https://img.shields.io/github/commit-activity/m/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github issues matteoferla notebook error reporter logo github](https://img.shields.io/github/issues/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+[![https img shields io github issues closed matteoferla notebook error reporter logo github](https://img.shields.io/github/issues-closed/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter)
+
+<!--[![https img shields io github release date matteoferla notebook error reporter logo github](https://img.shields.io/github/release-date/matteoferla/notebook-error-reporter?logo=github)](https://github.com/matteoferla/notebook-error-reporter)-->
+<!--[![https img shields io pypi dm notebook error reporter logo python](https://img.shields.io/pypi/dm/notebook-error-reporter?logo=python)](https://pypi.org/project/notebook-error-reporter)
+-->
+## Install
+
+    pip install notebook-error-reporter
+
+## Examples in action
+
+[![Fragmenstein](https://img.shields.io/badge/Run--demo--in--colab-fragmenstein.ipynb-f9ab00?logo=googlecolab)](https://colab.research.google.com/github/matteoferla/Fragmenstein/blob/master/colab_fragmenstein.ipynb)
+
+* [Run PyRosetta in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta.ipynb)
+* [Analysis of dimer output from ColabFold in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-dimer.ipynb)
+* [Migrate a ligand in Colab](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-pyrosetta-migrate_ligands.ipynb)
+* [Add missing loops by cannibilising AlphaFold2](https://colab.research.google.com/github/matteoferla/pyrosetta_help/blob/main/colab_notebooks/colab-thread_by_AF2_cannibalism.ipynb)
+
+
 
 ## Aims
 I have a few notebooks that I have shared on Twitter and 
@@ -114,6 +151,12 @@ Therefore, a server needs to be set up ideally to collect this...
 ## Server
 
 > For myself I have set-up https://errors.matteoferla.com
+> This is an Intel NUC acting as my homeserver connected to my
+> router. It could be even a Raspberry Pi.
+> (This is a weekend project so it's outside of the University's network
+> but privacy & confidentiality is as valued!)
+> If you like this project and want to replicate it
+> or use this server, just drop me an email.
 
 A FastAPI app to get the errors is also present.
 This needs to be set up on a hosting server exposed to the internet.
@@ -187,7 +230,7 @@ because it was created in a factory method of the latter. As it does not have a 
 it does not know what is the excecution count nor the first line of the cell.
 
 ```python
-!python -m pip install git+https://github.com/matteoferla/remote-notebook-error-collection.git
+!pip install notebook-error-reporter
 from notebook_error_reporter import ErrorServer
 
 es = ErrorServer(url='https://errors.matteoferla.com', notebook='test')
@@ -200,4 +243,17 @@ The latter error can be seen to have been sent successfully:
 es.retrieve_errors()
 ```
 
+However as I am not a Seattle/Arlington multinational
+hellbent on collecting data, I like to make it opt in:
+```python
+#@markdown Send error messages to errors.matteoferla.com for logging?
+#@markdown See [notebook-error-reporter repo for more](https://github.com/matteoferla/notebook-error-reporter)
+report_errors = False #@param {type:"boolean"}
+if report_errors:
+    !pip install notebook-error-reporter
+    from notebook_error_reporter import ErrorServer
+
+    es = ErrorServer(url='https://errors.matteoferla.com', notebook='fragmenstein')
+    es.enable()
+```
 
