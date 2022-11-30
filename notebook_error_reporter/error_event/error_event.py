@@ -33,7 +33,7 @@ class ErrorEvent:
         calling this method enables the error messaging by registering `self._post_run_cell`.
         """
         shell: InteractiveShell = get_ipython()  # noqa
-        assert IPython.version_info[0] < 6, 'Not applicable. use monkeypatch_extension'
+        assert IPython.version_info[0] > 5, 'Not applicable. use monkeypatch_extension'
         shell.events.register('post_run_cell', self._post_run_cell)
 
     def monkeypatch_extension(self):
